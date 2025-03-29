@@ -62,13 +62,11 @@ contract CrowdFunding {
         Campaign storage campaign = campaigns[_id];
         require (campaign.isActive == true,"Campaign is not active");
         require (campaign.deadline > block.timestamp,"Campaign has ended");
-        require (campaign.fundedAmount > 0,"");
-        campaign.backers[msg.sender] += fundingValue;
         campaign.fundedAmount += fundingValue;
         if (campaign.backers[msg.sender] == 0){
             campaign.numberOfBackers++;
         }
-        
+        campaign.backers[msg.sender] += fundingValue;
         
           
 
